@@ -15,8 +15,6 @@ include_once("dbconnect.php");
       $sqlinsert = "INSERT INTO `tbl_users`(`user_name`, `user_email`, `user_phoneno`, `user_address`, `user_pass`) VALUES ('$name','$email','$phoneno','$address','$password')";
 
 
-
-
 if ($conn->query($sqlinsert)===TRUE) {
     $response = array('status' => 'success', 'data' => null);
     sendJsonResponse($response);

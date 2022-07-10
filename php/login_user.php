@@ -20,8 +20,19 @@
             $user['phoneno'] = $row['user_phoneno'];
             $user['address'] = $row['user_address'];
         }
-        $response = array('status' => 'success', 'data' => $user);
+        $sqlgetquan = "SELECT * FROM tbl_carts WHERE user_email = '$email' AND cart_status IS NULL";
+        $result = $conn->query($sqlgetquan);
+        $number_of_result = $result->num_rows;
+        $carttotal = 0;
+        while($row = $result->fetch_assoc()){
+            $carttotal=$row['cart_quan'] + $carttotal;
+        }
+        $mycart = array();
+        $mycart['carttotal'] = $carttotal;
+        $response = array('status' => 'success', 'data'=>$user);
         sendJsonResponse($response);
+        //$response = array('status' => 'success', 'data' => $user);
+        //sendJsonResponse($response);
     }else{
         $response = array('status' => 'failed', 'data' => null);
         sendJsonResponse($response);
