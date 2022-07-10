@@ -12,7 +12,7 @@ $result = $conn->query($sqlgetqty);
 $number_of_result = $result->num_rows;
 $carttotal = 0;
 while($row = $result->fetch_assoc()) {
-    $carttotal = $row['cart_qty'] + $carttotal;
+    $carttotal = $row['cart_quan'] + $carttotal;
 }
 $mycart = array();
 $mycart['carttotal'] =$carttotal;
